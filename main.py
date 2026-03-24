@@ -1,3 +1,29 @@
+"""
+Simple example: Install packages from requirements.txt
+"""
+ 
+import subprocess
+import sys
+ 
+def install_requirements(requirements_file='requirements.txt'):
+    """Quick way to install packages from requirements.txt"""
+    try:
+        subprocess.run(
+            [sys.executable, '-m', 'pip', 'install', '-r', requirements_file],
+            check=True
+        )
+        print("✓ Installation completed successfully!")
+    except subprocess.CalledProcessError as e:
+        print(f"✗ Installation failed with error code {e.returncode}")
+        sys.exit(1)
+    except FileNotFoundError:
+        print(f"✗ requirements.txt not found")
+        sys.exit(1)
+ 
+if __name__ == '__main__':
+    install_requirements()
+
+
 import os
 import joblib
 import re
